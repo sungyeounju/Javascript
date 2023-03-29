@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>clock</title>
+</head>
+<body>
+    <strong id="clock" class="js-clock"></strong>
+    <script src="js/clock.js"></script>
+</body>
+<script>
+    const clockTitle = document.querySelector(".js-clock");
+    function getClock() {
+        const date = new Date();
+        const dateXmas = new Date('2023-12-25');
+
+        const diff = dateXmas - date;
+
+        const diffDay = Math.floor(diff / (1000*60*60*24));
+        const diffHour = String(Math.floor(diff / (1000*60*60)%24)).padStart(2,"0");
+        const diffMin = String(Math.floor(diff / (1000*60)%60)).padStart(2,"0");
+        const diffSec = String(Math.floor((diff % (1000*60))/1000)).padStart(2,"0");
+
+        clockTitle.innerText = `${diffDay}d:${diffHour}h:${diffMin}m:${diffSec}s`;
+    }
+    getClock();
+    setInterval(getClock,1000)
+</script>
+</html>
